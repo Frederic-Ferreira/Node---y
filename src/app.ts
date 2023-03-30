@@ -1,24 +1,22 @@
 import express from "express";
-import { testRoute } from "./routes/testRoute";
+import { postsRoutes } from "./routes/postsRoutes";
 
 const app = express();
 
-app.use("/api/test", testRoute);
+const config = (): void => {
+  //   app.use(cors());
+  //   app.use(morgan("dev"));
+  //   app.use(helmet());
+  //   app.use(compression());
+  app.use(express.json());
+  //   app.use(urlencoded({ extended: true }));
+};
 
-// const config = (): void => {
-//   app.use(cors());
-//   app.use(morgan("dev"));
-//   app.use(helmet());
-//   app.use(compression());
-//   app.use(json());
-//   app.use(urlencoded({ extended: true }));
-// };
+const routes = (): void => {
+  app.use("/api/posts", postsRoutes);
+};
 
-// const routes = (): void => {
-//   app.use("/api/users", userRoutes);
-// };
-
-// config();
-// routes();
+config();
+routes();
 
 export default app;
